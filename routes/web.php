@@ -36,8 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/items', [ItemController::class, 'index'])->name('items');
-    Route::get('/items/create', [ItemController::class, 'create']);
-    Route::post('/items', [ItemController::class, 'store']);
+    Route::get('/items/create', [ItemController::class, 'create'])->middleware('role:admin');
+    Route::post('/items', [ItemController::class, 'store'])->middleware('role:admin');
     Route::get('/items/{item}', [ItemController::class, 'show']);
 });
 
